@@ -20,5 +20,19 @@ describe(PhotoFramecomponent.name, () => {
     expect(component).toBeTruthy();
   });
 
+  it(`#${PhotoFramecomponent.prototype.like.name}
+  should trigger (@Output liked) once when called
+  multiple times within debounce time`, () => {
+    fixture.detectChanges();
+    let times = 0;
+    /**
+     * Por ser um output property, é possível fazer um subscribe.
+     * Toda bez que for chamado essa função, será incrementado o número de times.
+     */
+    component.liked.subscribe(() => times++);
+    component.like();
+    component.like();
 
+    expect(times).toBe(1);
+  });
 });

@@ -8,3 +8,9 @@
 
 
 O  que é um debounce?
+
+
+
+Para que serve o fakeAsync?
+Serve para controlar na mão, sincronizar o que eu quero fazer no código
+
