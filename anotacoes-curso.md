@@ -13,3 +13,6 @@ Serve para controlar na mão, sincronizar o que eu quero fazer no código
 Para que serve a função tick?
 Serve para controlar o tempo, muito usado quando alguma função é disparada somente após algum tempo.
 Toda vez que precisar controlar o tempo do código, será necessário colocar fakeAsync + tick.
+
+Quando é feito o teste no DOM?
+Geralmente para garantir o acesso à acessibilidade.

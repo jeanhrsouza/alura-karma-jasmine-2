@@ -53,4 +53,16 @@ describe(PhotoFramecomponent.name, () => {
     tick(500);
     expect(times).toBe(2);
   }));
+
+  it(`Should display number of likes when (@Input likes) is incremented`, fakeAsync(() => {
+    fixture.detectChanges(); // Iniciou o cicloi de vida do ngOnInit
+    component.likes++; //Incrementou o número de likes
+    fixture.detectChanges(); //Chamou novamente o ciclo para  que possa alterar o DOM
+
+    //↓↓↓Sugestão é tipar o element  sempre  genérico, caso houver refatoração, da menos trabalho
+    const element: HTMLElement =
+      fixture.nativeElement.querySelector('.like-counter'); //Acessando o valor do DOM
+
+    expect(element.textContent.trim()).toBe('1');
+  }));
 });
