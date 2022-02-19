@@ -4,3 +4,7 @@
 - para rodar o projeto → npm run all
 - ao rodar o projeto → localhost:4200
 - backend → localhost:3000/photos
+
+
+
+O  que é um debounce?
