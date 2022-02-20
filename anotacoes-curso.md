@@ -31,3 +31,5 @@ it(`(D) Should have aria-label with 0 (@Input likes)`, () => {
   expect(element.getAttribute("aria-label")).toBe("0: people liked");
 });
 ```
+## Cobertura de testes e teste de integração com o DOM
+Se  for se aprofundar em testes de integração com o DOM, o reporter não consegue identificar se foi contemplado ou não.
