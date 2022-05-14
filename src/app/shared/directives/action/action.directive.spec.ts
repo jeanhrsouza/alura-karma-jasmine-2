@@ -2,6 +2,7 @@ import { ActionDirectiveModule } from './action.module';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ActionDirective } from './action.directive';
 import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe(ActionDirective.name, () => {
   let fixture: ComponentFixture<ActionDirectiveTestComponent>;
@@ -20,8 +21,13 @@ describe(ActionDirective.name, () => {
 
   it(`(D) (@Output appAction) should emit event with payload when ENTER key is pressed`, () => {
     //Recebendo div do componente
-    const divEl: HTMLElement =
-      fixture.nativeElement.querySelector('.dummy-component');
+    //const divEl: HTMLElement = fixture.nativeElement.querySelector('.dummy-component');
+
+    //O query é um elemento específico do angular para realizar pesquisas no elemento do dom que é o nativeElement. Assim, podendo passar
+    //um predicado.
+    const divEl = fixture.debugElement.query(
+      By.directive(ActionDirective)
+    ).nativeElement;
 
     //Criando e emitindo evento
     const event = new KeyboardEvent('keyup', { key: 'Enter' });

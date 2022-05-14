@@ -71,5 +71,23 @@ describe(ActionDirective.name, () => {
 
 ---
 
+## Qual é a diferença entre o nativeElement e o debugElement?
 
+Nenhuma. Os dois apontam para o mesmo objeto da memória. A questão é que o fixture.nativeElement é um atalho para não escrever fixture.debugElement.nativeElement.
 
+**E por que existe então o fixture.debugElement.nativeElement?**
+Ele da outros recursos de procura no elemento do dom que está mais atrelado aos elementos do Angular.
+
+```typescript
+//O query é um elemento específico do angular para realizar pesquisas no elemento do dom que é o nativeElement. Assim, podendo passar um predicado.
+const divEl = fixture.debugElement.query(By.directive(ActionDirective));
+```
+
+Porém, é necessário tomar MUITO cuidado ao usar o .query pelo fato de retornar o elemento co tipo debugElement. Para forçar ser do tipo nativeElement, faça
+
+```typescript
+//O query é um elemento específico do angular para realizar pesquisas no elemento do dom que é o nativeElement. Assim, podendo passar um predicado.
+const divEl = fixture.debugElement.query(
+  By.directive(ActionDirective)
+).nativeElement;
+```
