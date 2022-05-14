@@ -33,3 +33,12 @@ it(`(D) Should have aria-label with 0 (@Input likes)`, () => {
 ```
 ## Cobertura de testes e teste de integração com o DOM
 Se  for se aprofundar em testes de integração com o DOM, o reporter não consegue identificar se foi contemplado ou não.
+
+
+## Como trabalhar com eventos do teclado
+Para trabalhar com interações do DOM + eventos de teclados, é necessário criar eventos 
+
+
+```typescript 
+const event = new KeyboardEvent('keyup', { key: 'Enter' });
+```
