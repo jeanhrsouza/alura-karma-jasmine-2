@@ -31,14 +31,43 @@ it(`(D) Should have aria-label with 0 (@Input likes)`, () => {
   expect(element.getAttribute("aria-label")).toBe("0: people liked");
 });
 ```
-## Cobertura de testes e teste de integração com o DOM
-Se  for se aprofundar em testes de integração com o DOM, o reporter não consegue identificar se foi contemplado ou não.
 
+## Cobertura de testes e teste de integração com o DOM
+
+Se for se aprofundar em testes de integração com o DOM, o reporter não consegue identificar se foi contemplado ou não.
 
 ## Como trabalhar com eventos do teclado
-Para trabalhar com interações do DOM + eventos de teclados, é necessário criar eventos 
 
+Para trabalhar com interações do DOM + eventos de teclados, é necessário criar eventos
 
-```typescript 
-const event = new KeyboardEvent('keyup', { key: 'Enter' });
+```typescript
+const event = new KeyboardEvent("keyup", { key: "Enter" });
 ```
+
+---
+
+## Testes em diretivas
+
+A ideia é criar um 'Dummy component' (componente que não faça parte da aplicação), aplicar a diretiva e testar;
+O comportamento da diretiva tem que ser independente do comportamento do componente que faz parte.
+
+---
+
+## Quando usar async/await ou não em beforeEach
+
+Quando o arquivo que for testar for um template, é recomendado utilizar o async/await. Caso contrário não é necessário.
+
+Porém, por convenção, pode-se adicionar async/await quando o beforeEach for tratar de configurar o módulo de teste.
+
+```typescript
+describe(ActionDirective.name, () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ActionDirectiveModule],
+    }).compileComponents();
+  });
+});
+```
+
+---
+
