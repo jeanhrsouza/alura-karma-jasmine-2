@@ -14,10 +14,7 @@ export class PhotoBoardService {
       .pipe(
         map((photos) => {
           return photos.map((photo) => {
-            return {
-              ...photo,
-              description: photo.description.toUpperCase(),
-            };
+            return { ...photo, description: photo.description.toUpperCase() };
           });
         })
       )

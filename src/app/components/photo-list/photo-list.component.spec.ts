@@ -6,6 +6,7 @@ import { PhotoBoardService } from 'src/app/shared/components/photo-board/service
 import { buildPhotoList } from 'src/app/shared/components/photo-board/test/build-photo-list';
 import { of } from 'rxjs';
 
+
 describe(PhotoListComponent.name, () => {
   let fixture: ComponentFixture<PhotoListComponent>;
   let component: PhotoListComponent;
@@ -13,13 +14,13 @@ describe(PhotoListComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientModule, PhotoListModule],
+      imports: [PhotoListModule, HttpClientModule],
     }).compileComponents();
-  });
 
-  fixture = TestBed.createComponent(PhotoListComponent);
-  component = fixture.componentInstance;
-  service = TestBed.inject(PhotoBoardService);
+    fixture = TestBed.createComponent(PhotoListComponent);
+    component = fixture.componentInstance;
+    service = TestBed.inject(PhotoBoardService);
+  });
 
   it('Should create component', () => {
     expect(component).toBeTruthy();
@@ -28,28 +29,20 @@ describe(PhotoListComponent.name, () => {
   it(`(D) Should display board when data arrives`, () => {
     const photos = buildPhotoList();
     spyOn(service, 'getPhotos').and.returnValue(of(photos));
-
     fixture.detectChanges();
-
     const board = fixture.nativeElement.querySelector('app-photo-board');
     const loader = fixture.nativeElement.querySelector('.loader');
-
-    expect(board).withContext('Should display board').not.toBeNull();
+    expect(board).withContext('Should dislay board').not.toBeNull();
     expect(loader).withContext('Should not display loader').toBeNull();
-
   });
 
-  it(`(D) Should display loader while waitir for data`, () => {
+  it(`(D) Should display loader while waiting for data`, () => {
     const photos = buildPhotoList();
     spyOn(service, 'getPhotos').and.returnValue(null);
-
     fixture.detectChanges();
-
     const board = fixture.nativeElement.querySelector('app-photo-board');
     const loader = fixture.nativeElement.querySelector('.loader');
-
     expect(board).withContext('Should not display board').toBeNull();
     expect(loader).withContext('Should display loader').not.toBeNull();
-
   });
 });

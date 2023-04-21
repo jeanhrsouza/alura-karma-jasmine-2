@@ -10,7 +10,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     PhotoBoardModule,
     FontAwesomeModule
-
   ],
   exports: [PhotoListComponent]
 })

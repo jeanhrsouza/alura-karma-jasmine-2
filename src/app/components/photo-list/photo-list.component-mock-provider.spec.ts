@@ -8,24 +8,26 @@ import { Observable, of } from 'rxjs';
 import { Photo } from 'src/app/shared/components/photo-board/interfaces/photo';
 import { PhotoBoardMockService } from 'src/app/shared/components/photo-board/service/photo-board.mock.service';
 
-describe(PhotoListComponent.name + 'Mock Provider', () => {
+describe(PhotoListComponent.name + ' Mock Provider', () => {
   let fixture: ComponentFixture<PhotoListComponent>;
   let component: PhotoListComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientModule, PhotoListModule],
+      imports: [
+        PhotoListModule,
+        HttpClientModule
+      ],
       providers: [
         {
           provide: PhotoBoardService,
           useClass: PhotoBoardMockService
-        },
-      ],
+        }]
     }).compileComponents();
-  });
 
-  fixture = TestBed.createComponent(PhotoListComponent);
-  component = fixture.componentInstance;
+    fixture = TestBed.createComponent(PhotoListComponent);
+    component = fixture.componentInstance;
+  });
 
   it('Should create component', () => {
     expect(component).toBeTruthy();
@@ -33,11 +35,13 @@ describe(PhotoListComponent.name + 'Mock Provider', () => {
 
   it(`(D) Should display board when data arrives`, () => {
     fixture.detectChanges();
-
-    const board = fixture.nativeElement.querySelector('app-photo-board');
-    const loader = fixture.nativeElement.querySelector('.loader');
-
-    expect(board).withContext('Should display board').not.toBeNull();
-    expect(loader).withContext('Should not display loader').toBeNull();
+    const board = fixture.nativeElement
+      .querySelector('app-photo-board');
+    const loader = fixture.nativeElement
+      .querySelector('.loader');
+    expect(board).withContext('Should dislay board')
+      .not.toBeNull();
+    expect(loader).withContext('Should not display loader')
+      .toBeNull();
   });
 });
