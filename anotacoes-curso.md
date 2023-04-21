@@ -91,3 +91,7 @@ const divEl = fixture.debugElement.query(
   By.directive(ActionDirective)
 ).nativeElement;
 ```
+
+
+## Dicas
+- Deixar os componentes de escopo de página como o último componente a ser testado. Teste componentes menores que utilizam composição e combinam entre si.
