@@ -4,31 +4,37 @@ import { PhotoListModule } from './photo-list.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PhotoBoardService } from 'src/app/shared/components/photo-board/service/photo-board.service';
 import { buildPhotoList } from 'src/app/shared/components/photo-board/test/build-photo-list';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { Photo } from 'src/app/shared/components/photo-board/interfaces/photo';
 
-describe(PhotoListComponent.name, () => {
+describe(PhotoListComponent.name + 'Mock Provider', () => {
   let fixture: ComponentFixture<PhotoListComponent>;
   let component: PhotoListComponent;
-  let service: PhotoBoardService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientModule, PhotoListModule],
+      providers: [
+        {
+          provide: PhotoBoardService,
+          useValue: {
+            getPhotos(): Observable<Photo[]> {
+              return of(buildPhotoList());
+            },
+          },
+        },
+      ],
     }).compileComponents();
   });
 
   fixture = TestBed.createComponent(PhotoListComponent);
   component = fixture.componentInstance;
-  service = TestBed.inject(PhotoBoardService);
 
   it('Should create component', () => {
     expect(component).toBeTruthy();
   });
 
   it(`(D) Should display board when data arrives`, () => {
-    const photos = buildPhotoList();
-    spyOn(service, 'getPhotos').and.returnValue(of(photos));
-
     fixture.detectChanges();
 
     const board = fixture.nativeElement.querySelector('app-photo-board');
@@ -36,20 +42,5 @@ describe(PhotoListComponent.name, () => {
 
     expect(board).withContext('Should display board').not.toBeNull();
     expect(loader).withContext('Should not display loader').toBeNull();
-
-  });
-
-  it(`(D) Should display loader while waitir for data`, () => {
-    const photos = buildPhotoList();
-    spyOn(service, 'getPhotos').and.returnValue(null);
-
-    fixture.detectChanges();
-
-    const board = fixture.nativeElement.querySelector('app-photo-board');
-    const loader = fixture.nativeElement.querySelector('.loader');
-
-    expect(board).withContext('Should not display board').toBeNull();
-    expect(loader).withContext('Should display loader').not.toBeNull();
-
   });
 });
