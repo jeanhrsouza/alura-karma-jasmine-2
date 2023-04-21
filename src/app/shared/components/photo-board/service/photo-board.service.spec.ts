@@ -20,7 +20,7 @@ const mockData = {
       description: 'example 2',
       src: '',
     },
-  ]
+  ],
 };
 
 describe(PhotoBoardComponent.name, () => {
@@ -39,12 +39,12 @@ describe(PhotoBoardComponent.name, () => {
     httpController = TestBed.inject(HttpTestingController);
   });
 
+  afterEach(() => {
+    //verifica se todas as requisições foram feitas
+    httpController.verify();
+  });
 
-  it(`#${PhotoBoardService.prototype.getPhotos.name} should return photos with description in uppercase`, done => {
-
-
-
-
+  it(`#${PhotoBoardService.prototype.getPhotos.name} should return photos with description in uppercase`, (done) => {
     service.getPhotos().subscribe((photos) => {
       expect(photos[0].description).toBe('EXAMPLE 1');
       expect(photos[1].description).toBe('EXAMPLE 2');
@@ -56,10 +56,6 @@ describe(PhotoBoardComponent.name, () => {
      * fazer a requisição. Se ele ficar antes, a requisição não será feita.     *
      */
 
-    httpController
-      .expectOne(mockData.api)
-      .flush(mockData.data);
-
+    httpController.expectOne(mockData.api).flush(mockData.data);
   });
-
 });
