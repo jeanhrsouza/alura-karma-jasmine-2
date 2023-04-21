@@ -1,27 +1,40 @@
-# NgTest1
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
+# :pencil: Índice
+- [:pencil: Índice](#pencil-índice)
+  - [:books: Sobre](#books-sobre)
+  - [:rocket: Tecnologias](#rocket-tecnologias)
+  - [:open\_file\_folder: Como baixar e executar o projeto](#open_file_folder-como-baixar-e-executar-o-projeto)
 
-## Development server
+---
+  
+## :books: Sobre
+O projeto **alura-karma-jasmine-2** foi criado dentro do curso "[Angular: avançando com testes automatizados](https://cursos.alura.com.br/course/angular-avancando-testes-automatizados)" com intuito de colocar em prática todo o conteúdo estudado durante o curso.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## :rocket: Tecnologias
+- [Angular](https://angular.io/)
+- [Jasmine](https://jasmine.github.io/)
+- [Karma](https://karma-runner.github.io/latest/index.html)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## :open_file_folder: Como baixar e executar o projeto
+Para baixar o projeto, basta executar o comando abaixo no terminal:
+```bash
+# clonar o projeto
+git clone https://github.com/jeanhrsouza/alura-karma-jasmine-2.git
 
-## Build
+# entrar na pasta do projeto
+cd alura-karma-jasmine-2
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+# instalar as dependências
+npm install
 
-## Running unit tests
+# executar o projeto
+npm run all
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# executar os testes
+npm run test
 
-## Running end-to-end tests
+# para acessar o frontend
+http://localhost:4200
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
